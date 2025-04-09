@@ -38,13 +38,12 @@ fun runAnimate() {
 
     runBlocking {
         launch {
-            for(j in 1..500) {
+            for(j in 1..100) {
                 for (i in 1..100) {
-                    val z = -0.15872880816459656 + (i / 1000.0)
                     client.publish(
                         moveTopic,
                         MqttMessage(
-                            "-0.025958789512515068,0.3047788739204407,${z}".toByteArray(),
+                            "${i / 100.0}".toByteArray(),
                         )
                     )
                     delay(Random.nextLong(100, 1000))
@@ -53,12 +52,12 @@ fun runAnimate() {
         }
 
         launch {
-            for(j in 1..500) {
+            for(j in 1..100) {
                 for (i in 1..100) {
                     client.publish(
                         rotationTopic,
                         MqttMessage(
-                            "0,${i / 25.0},0".toByteArray(),
+                            "${i / 100.0}".toByteArray(),
                         )
                     )
                     delay(Random.nextLong(100, 2000))
